@@ -29,9 +29,6 @@ jobs:
       - restore_cache:
           key: pip-{{checksum "requirements.txt"}}
       - run:
-          name: Install requirements and run tests
-          command:    pip install -r requirements.txt
-      - run:
           name: Run tests
           command: |
             cd intergration_test
