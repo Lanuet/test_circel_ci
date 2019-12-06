@@ -11,44 +11,46 @@ jobs:
       - run:
           name: Run unit tests
           command: echo "Run unit test"
+  clone_code_test:
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "1e:58:d1:86:72:f0:52:b3:e0:b2:5c:03:fe:79:89:86"
       - run:
           name: Clone test code
-          command: git clone git@github.com:Lannt-teko/ppm-api-testing.git -q
+          command: git clone git@github.com:Lannt-teko/ppm-api-testing.git intergration_test
   integration_tests:
     executor: win/default
-    working_directory: ~/backend_app/ppm-api-testing
+      working_directory: ~/backend_app/intergration_test
     #    environment:
     #      MYSQL_DATABASE: test-ppm
     #      MYSQL_USER: dev
     #      MYSQL_PASSWORD: dev
     steps:
-#      - add_ssh_keys:
-#          fingerprints:
-#            - "1e:58:d1:86:72:f0:52:b3:e0:b2:5c:03:fe:79:89:86"
-#      - run:
-#          name: Add ssh-keyscan
-#          command: ssh-keygen -R github.com
-      - run:
-          name: Clone test code
-          command:
-            git clone git@github.com:Lannt-teko/ppm-api-testing.git
-      #      - restore_cache:
-      #          key: pip-{{checksum "requirements.txt"}}
-      #      - run: python -m pip install --upgrade pips
+      #      - run:
+      #          name: Add ssh-keyscan
+      #          command: ssh-keygen -R github.com
+      - restore_cache:
+          key: pip-{{checksum "requirements.txt"}}
       - run:
           name: Install requirements and run tests
-          command: |
-            cd intergration_test
-            pip install -r requirements.txt
-            pytest --submit-tests tests/functional/price/test_create_overlap_price_schedule.py
-      #      - save_cache:
-      #          key: pip-{{checksum "requirements.txt"}}
-      #          paths:
-      #            - ~/.cache/pip
+          command:    pip install -r requirements.txt
+      - run:
+          name: Run tests
+          command: pytest --submit-tests tests/functional/price/test_create_overlap_price_schedule.py
+      - save_cache:
+          key: pip-{{checksum "requirements.txt"}}
+          paths:
+            - ~/.cache/pip
 workflows:
   version: 2.1
   build-test:
     jobs:
       - unit_tests
-#      - integration_tests
+      - clone_code_test:
+          requires:
+            - unit_test
+      - integration_tests:
+          requires:
+            - clone_code_test
 

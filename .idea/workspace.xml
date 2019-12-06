@@ -78,7 +78,8 @@
       <option name="presentableId" value="Default" />
       <updated>1575347941479</updated>
       <workItem from="1575347942788" duration="5041000" />
-      <workItem from="1575425051619" duration="17360000" />
+      <workItem from="1575425051619" duration="20317000" />
+      <workItem from="1575538594867" duration="813000" />
     </task>
     <task id="LOCAL-00001" summary="update">
       <created>1575426673049</created>
@@ -304,7 +305,49 @@
       <option name="project" value="LOCAL" />
       <updated>1575457962419</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="update">
+      <created>1575459461586</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1575459461586</updated>
+    </task>
+    <task id="LOCAL-00034" summary="fix: ci">
+      <created>1575460312000</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1575460312000</updated>
+    </task>
+    <task id="LOCAL-00035" summary="fix: ci">
+      <created>1575460740622</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1575460740622</updated>
+    </task>
+    <task id="LOCAL-00036" summary="fix: ci">
+      <created>1575461055340</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1575461055340</updated>
+    </task>
+    <task id="LOCAL-00037" summary="fix: ci">
+      <created>1575461405158</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1575461405158</updated>
+    </task>
+    <task id="LOCAL-00038" summary="fix: ci">
+      <created>1575461600119</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1575461600119</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -315,7 +358,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
@@ -323,6 +368,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="update" />
-    <option name="LAST_COMMIT_MESSAGE" value="update" />
+    <MESSAGE value="fix: ci" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: ci" />
   </component>
 </project>
