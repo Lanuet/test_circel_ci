@@ -21,7 +21,8 @@ jobs:
             - "1e:58:d1:86:72:f0:52:b3:e0:b2:5c:03:fe:79:89:86"
       - run:
           name: Clone test code
-          command: git clone https://github.com/Lanuet/test_circel_ci.git intergration_test
+          command: |
+            git clone https://github.com/Lanuet/test_circel_ci.git intergration_test
   integration_tests:
     executor: win/default
     working_directory: ~/backend_app/intergration_test
@@ -47,19 +48,20 @@ workflows:
   version: 2.1
   build-test:
     jobs:
-#      - unit_tests
-#      - clone_code_test:
-#          requires:
-#            - unit_tests
+      #      - unit_tests
+      #      - clone_code_test:
+      #          requires:
+      #            - unit_tests
+      - clone_code_test
       - integration_tests
-#      - :
+        #      - :
         #          requires:
         #            - clone_code_test
 
         #    environment:
         #      MYSQL_DATABASE: test-ppm
         #      MYSQL_USER: dev
-        #      MYSQL_PASSWORD: dev
-        #      - run:
-        #          name: Add ssh-keyscan
-        #          command: ssh-keygen -R github.com
+      #      MYSQL_PASSWORD: dev
+      #      - run:
+      #          name: Add ssh-keyscan
+      #          command: ssh-keygen -R github.com
