@@ -33,9 +33,9 @@ jobs:
             mkdir test-reports
             pytest --submit-tests --html=test-reports/report.html tests/functional/price/test_create_overlap_price_schedule.py
       - store_test_results:
-          path: test-reports
+          path: ppm-api-testing/test-reports
       - store_artifacts:
-          path: test-reports
+          path: ppm-api-testing/test-reports
       - save_cache:
           key: pip-{{checksum "ppn-api-testing/requirements.txt"}}
           paths:
