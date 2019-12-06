@@ -19,14 +19,14 @@ jobs:
     working_directory: /qc/intergration_test
     steps:
       - restore_cache:
-          key: pip-{{checksum "requirements.txt"}}
+          key: pip-{{checksum "ppn-api-testing/requirements.txt"}}
       - add_ssh_keys:
           fingerprints:
             - "1e:58:d1:86:72:f0:52:b3:e0:b2:5c:03:fe:79:89:86"
       - run:
           name: Clone test code
           command: |
-            git clone https://github.com/Lanuet/test_circel_ci.git ppm-api-testing
+            git clone https://github.com/Lannt-teko/ppm-api-testing.git ppm-api-testing
       - run:
           name: Run tests
           command: |
@@ -40,7 +40,7 @@ jobs:
       - store_artifacts:
           path: test-reports
       - save_cache:
-          key: pip-{{checksum "requirements.txt"}}
+          key: pip-{{checksum "ppn-api-testing/requirements.txt"}}
           paths:
             - ~/.cache/pip
 workflows:
