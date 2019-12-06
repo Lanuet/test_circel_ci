@@ -17,7 +17,7 @@ jobs:
   clone_code_test:
     docker:
       - image: python:3.7.3
-    working_directory: ~/qc
+    working_directory: /qc
     steps:
       - add_ssh_keys:
           fingerprints:
@@ -30,10 +30,11 @@ jobs:
             dir
       - persist_to_workspace:
           root: intergration_test
-          paths: ppm-api-testing
+          paths:
+            - ppm-api-testing
   integration_tests:
     executor: win/default
-    #    working_directory: ~/qc/intergration_test
+    working_directory: /qc
     steps:
       - attach_workspace:
           - at: /qc/intergration_test/ppm-api-testing
