@@ -23,6 +23,7 @@ jobs:
           name: Clone test code
           command: |
             git clone https://github.com/Lanuet/test_circel_ci.git intergration_test
+            dir
   integration_tests:
     executor: win/default
     working_directory: ~/backend_app/intergration_test
@@ -53,14 +54,14 @@ workflows:
       #          requires:
       #            - unit_tests
       - clone_code_test
-      - integration_tests
+#      - integration_tests
         #      - :
         #          requires:
         #            - clone_code_test
 
         #    environment:
         #      MYSQL_DATABASE: test-ppm
-        #      MYSQL_USER: dev
+      #      MYSQL_USER: dev
       #      MYSQL_PASSWORD: dev
       #      - run:
       #          name: Add ssh-keyscan
