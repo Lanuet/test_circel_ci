@@ -10,7 +10,9 @@ jobs:
     steps:
       - run:
           name: Run unit tests
-          command: echo "Run unit test"
+          command: |
+            echo "Run unit test"
+            mkdir app
   clone_code_test:
     working_directory: ~/backend_app
     docker:
@@ -49,18 +51,18 @@ workflows:
   version: 2.1
   build-test:
     jobs:
-      #      - unit_tests
-      #      - clone_code_test:
+      - unit_tests
+      - clone_code_test:
+        requires:
+          - unit_tests
+        #      - clone_code_test
+        #      - integration_tests
+      #      - :
       #          requires:
-      #            - unit_tests
-      - clone_code_test
-#      - integration_tests
-        #      - :
-        #          requires:
-        #            - clone_code_test
+      #            - clone_code_test
 
-        #    environment:
-        #      MYSQL_DATABASE: test-ppm
+      #    environment:
+      #      MYSQL_DATABASE: test-ppm
       #      MYSQL_USER: dev
       #      MYSQL_PASSWORD: dev
       #      - run:
