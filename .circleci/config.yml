@@ -36,8 +36,9 @@ jobs:
     executor: win/default
     working_directory: /qc
     steps:
+      - checkout
       - attach_workspace:
-          - at: /qc/intergration_test/ppm-api-testing
+          - at: /qc/intergration_test
       - restore_cache:
           key: pip-{{checksum "requirements.txt"}}
       - run:
@@ -59,10 +60,8 @@ workflows:
   version: 2.1
   build-test:
     jobs:
-      - unit_tests
-      - clone_code_test:
-          requires:
-            - unit_tests
+      #      - unit_tests
+      - clone_code_test
       - integration_tests:
           requires:
             - clone_code_test
