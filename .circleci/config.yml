@@ -13,10 +13,11 @@ jobs:
           command: |
             echo "Run unit test"
             mkdir app
+            dir
   clone_code_test:
-    working_directory: ~/backend_app
     docker:
       - image: python:3.7.3
+    working_directory: ~/intergration_test
     steps:
       - add_ssh_keys:
           fingerprints:
@@ -24,18 +25,23 @@ jobs:
       - run:
           name: Clone test code
           command: |
-            git clone https://github.com/Lanuet/test_circel_ci.git intergration_test
+            git clone https://github.com/Lanuet/test_circel_ci.git ppm-api-testing
             dir
+      - persist_to_workspace:
+          paths: ppm-api-testing
   integration_tests:
     executor: win/default
-    working_directory: ~/backend_app/intergration_test
+    working_directory: ~/intergration_test
     steps:
+      - attach_workspace:
+          - at: ~/intergration_test/ppm-api-testing
       - restore_cache:
           key: pip-{{checksum "requirements.txt"}}
       - run:
           name: Run tests
           command: |
             dir
+            cd ppm-api-testing
             pip install -r requirements.txt
             mkdir test-reports
             pytest --submit-tests --html=test-reports/report.html --css=highcontrast.css --css=accessible.css tests/functional/price/test_create_overlap_price_schedule.py
@@ -55,16 +61,14 @@ workflows:
       - clone_code_test:
           requires:
             - unit_tests
-        #      - clone_code_test
-        #      - integration_tests
-      #      - :
-      #          requires:
-      #            - clone_code_test
+      - integration_tests:
+          requires:
+            - clone_code_test
 
-      #    environment:
-      #      MYSQL_DATABASE: test-ppm
-      #      MYSQL_USER: dev
-      #      MYSQL_PASSWORD: dev
-      #      - run:
-      #          name: Add ssh-keyscan
-      #          command: ssh-keygen -R github.com
+#    environment:
+#      MYSQL_DATABASE: test-ppm
+#      MYSQL_USER: dev
+#      MYSQL_PASSWORD: dev
+#      - run:
+#          name: Add ssh-keyscan
+#          command: ssh-keygen -R github.com
