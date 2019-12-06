@@ -31,7 +31,8 @@ jobs:
             cd ppm-api-testing
             pip install -r requirements.txt
             mkdir test-reports
-            pytest --submit-tests --html=test-reports/report.html tests/functional/price/test_create_overlap_price_schedule.py
+            echo "Intergration test"
+#            pytest --submit-tests --html=test-reports/report.html tests/functional/price/test_create_overlap_price_schedule.py
       - store_test_results:
           path: ppm-api-testing/test-reports
       - store_artifacts:
