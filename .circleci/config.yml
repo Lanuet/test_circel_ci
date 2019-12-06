@@ -12,8 +12,6 @@ jobs:
           name: Run unit tests
           command: |
             echo "Run unit test"
-            mkdir app
-            dir
   integration_tests:
     executor: win/default
     working_directory: /qc/intergration_test
@@ -31,10 +29,9 @@ jobs:
           name: Run tests
           command: |
             cd ppm-api-testing
-            dir
             pip install -r requirements.txt
             mkdir test-reports
-            pytest --submit-tests --html=test-reports/report.html --css=highcontrast.css --css=accessible.css tests/functional/price/test_create_overlap_price_schedule.py
+            pytest --submit-tests --html=test-reports/report.html tests/functional/price/test_create_overlap_price_schedule.py
       - store_test_results:
           path: test-reports
       - store_artifacts:
