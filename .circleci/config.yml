@@ -53,8 +53,8 @@ workflows:
     jobs:
       - unit_tests
       - clone_code_test:
-        requires:
-          - unit_tests
+          requires:
+            - unit_tests
         #      - clone_code_test
         #      - integration_tests
       #      - :
