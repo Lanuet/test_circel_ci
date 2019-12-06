@@ -36,9 +36,8 @@ jobs:
     executor: win/default
     working_directory: /qc
     steps:
-      - checkout
       - attach_workspace:
-          - at: /qc/intergration_test
+          at: /qc/intergration_test/ppm-api-testing
       - restore_cache:
           key: pip-{{checksum "requirements.txt"}}
       - run:
