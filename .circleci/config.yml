@@ -31,7 +31,7 @@ jobs:
       - run:
           name: Run tests
           command: |
-            cd intergration_test
+            dir
             pip install -r requirements.txt
             mkdir test-reports
             pytest --submit-tests --html=test-reports/report.html --css=highcontrast.css --css=accessible.css tests/functional/price/test_create_overlap_price_schedule.py
@@ -47,13 +47,14 @@ workflows:
   version: 2.1
   build-test:
     jobs:
-      - unit_tests
-      - clone_code_test:
-          requires:
-            - unit_tests
-      - integration_tests:
-          requires:
-            - clone_code_test
+#      - unit_tests
+#      - clone_code_test:
+#          requires:
+#            - unit_tests
+      - integration_tests
+#      - :
+        #          requires:
+        #            - clone_code_test
 
         #    environment:
         #      MYSQL_DATABASE: test-ppm
