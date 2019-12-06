@@ -34,7 +34,7 @@ jobs:
             - ppm-api-testing
   integration_tests:
     executor: win/default
-#        working_directory: /qc
+    #        working_directory: /qc
     steps:
       - attach_workspace:
           at: /qc/intergration_test/ppm-api-testing
@@ -43,6 +43,7 @@ jobs:
       - run:
           name: Run tests
           command: |
+            cd qc/intergration_test/ppm-api-testing
             dir
             pip install -r requirements.txt
             mkdir test-reports
