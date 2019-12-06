@@ -17,7 +17,7 @@ jobs:
   clone_code_test:
     docker:
       - image: python:3.7.3
-    working_directory: ~/intergration_test
+    working_directory: ~/qc
     steps:
       - add_ssh_keys:
           fingerprints:
@@ -25,23 +25,24 @@ jobs:
       - run:
           name: Clone test code
           command: |
-            git clone https://github.com/Lanuet/test_circel_ci.git ppm-api-testing
+            mkdir -p intergration_test
+            git clone https://github.com/Lanuet/test_circel_ci.git intergration_test/ppm-api-testing
             dir
       - persist_to_workspace:
+          root: intergration_test
           paths: ppm-api-testing
   integration_tests:
     executor: win/default
-    working_directory: ~/intergration_test
+    #    working_directory: ~/qc/intergration_test
     steps:
       - attach_workspace:
-          - at: ~/intergration_test/ppm-api-testing
+          - at: /qc/intergration_test/ppm-api-testing
       - restore_cache:
           key: pip-{{checksum "requirements.txt"}}
       - run:
           name: Run tests
           command: |
             dir
-            cd ppm-api-testing
             pip install -r requirements.txt
             mkdir test-reports
             pytest --submit-tests --html=test-reports/report.html --css=highcontrast.css --css=accessible.css tests/functional/price/test_create_overlap_price_schedule.py
