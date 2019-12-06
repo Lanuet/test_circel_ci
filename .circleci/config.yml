@@ -33,7 +33,15 @@ jobs:
           command:    pip install -r requirements.txt
       - run:
           name: Run tests
-          command: pytest --submit-tests tests/functional/price/test_create_overlap_price_schedule.py
+          command: |
+            cd intergration_test
+            pip install -r requirements.txt
+            mkdir test-reports
+            pytest --submit-tests --html=test-reports/report.html --css=highcontrast.css --css=accessible.css tests/functional/price/test_create_overlap_price_schedule.py
+      - store_test_results:
+          path: test-reports
+      - store_artifacts:
+          path: test-reports
       - save_cache:
           key: pip-{{checksum "requirements.txt"}}
           paths:
