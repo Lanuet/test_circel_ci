@@ -20,6 +20,12 @@ jobs:
           fingerprints:
             - "a4:0a:d3:04:3e:6a:ed:5a:eb:7d:e7:d5:4e:0a:e9:f7"
       - run:
+          name: Configure SSH agent
+          command: |
+            ssh-add -D
+            ssh-add ~/.ssh/id_rsa_somefingerprint
+      - install_dependencies.sh
+      - run:
           name: Clone test code
           command: |
             git clone git@github.com:Lannt-teko/ppm-api-testing.git ppm-api-testing
@@ -32,7 +38,7 @@ jobs:
             pip install -r requirements.txt
             mkdir test-reports
             echo "Intergration test"
-#            pytest --submit-tests --html=test-reports/report.html tests/functional/price/test_create_overlap_price_schedule.py
+      #            pytest --submit-tests --html=test-reports/report.html tests/functional/price/test_create_overlap_price_schedule.py
       - store_test_results:
           path: ppm-api-testing/test-reports
       - store_artifacts:
