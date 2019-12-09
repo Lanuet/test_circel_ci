@@ -22,7 +22,7 @@ jobs:
       - run:
           name: Clone test code
           command: |
-            git clone https://github.com/Lannt-teko/ppm-api-testing.git ppm-api-testing
+            git clone git@github.com:Lannt-teko/ppm-api-testing.git ppm-api-testing
       - restore_cache:
           key: pip-{{checksum "ppm-api-testing/requirements.txt"}}
       - run:
