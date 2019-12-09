@@ -24,7 +24,6 @@ jobs:
           command: |
             ssh-add -D
             ssh-add ~/.ssh/id_rsa_somefingerprint
-      - install_dependencies.sh
       - run:
           name: Clone test code
           command: |
