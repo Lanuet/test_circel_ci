@@ -18,12 +18,12 @@ jobs:
     steps:
       - add_ssh_keys:
           fingerprints:
-            - "a4:0a:d3:04:3e:6a:ed:5a:eb:7d:e7:d5:4e:0a:e9:f7"
-      - run:
-          name: Configure SSH agent
-          command: |
-            ssh-add -D
-            ssh-add ~/.ssh/id_rsa_somefingerprint
+            - " 86:4b:66:f1:bc:5f:d5:90:d0:9b:15:5f:36:fb:17:dc"
+#      - run:
+#          name: Configure SSH agent
+#          command: |
+#            ssh-add -D
+#            ssh-add ~/.ssh/id_rsa_somefingerprint
       - run:
           name: Clone test code
           command: |
